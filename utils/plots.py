@@ -489,4 +489,5 @@ def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
             continue
         if pos2[0] % 640 == 0 or pos2[1] % 640 == 0 or pos2[0]<0 or pos2[1]<0:
             continue
-        cv2.line(im, pos1, pos2, (int(r), int(g), int(b)), thickness=2)
+        lw = 3 or max(round(sum(im.shape) / 2 * 0.003), 2)  # line width
+        cv2.line(im, pos1, pos2, (int(r), int(g), int(b)), thickness=lw)
