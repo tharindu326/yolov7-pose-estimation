@@ -463,7 +463,8 @@ def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
 
     pose_limb_color = palette[[9, 9, 9, 9, 7, 7, 7, 0, 0, 0, 0, 0, 16, 16, 16, 16, 16, 16, 16]]
     pose_kpt_color = palette[[16, 16, 16, 16, 16, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9]]
-    radius = 5
+    lw = 3 or max(round(sum(im.shape) / 2 * 0.003), 2)  # line width
+    radius = lw + 3
     num_kpts = len(kpts) // steps
 
     for kid in range(num_kpts):
@@ -489,5 +490,5 @@ def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
             continue
         if pos2[0] % 640 == 0 or pos2[1] % 640 == 0 or pos2[0]<0 or pos2[1]<0:
             continue
-        lw = 3 or max(round(sum(im.shape) / 2 * 0.003), 2)  # line width
+
         cv2.line(im, pos1, pos2, (int(r), int(g), int(b)), thickness=lw)
